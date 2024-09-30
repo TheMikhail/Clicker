@@ -3,10 +3,7 @@ package com.example.clicker
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var buttonClick: Button
@@ -16,11 +13,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         buttonClick = findViewById(R.id.buttonScore)
-        textScore = findViewById(R.id.text_view)
+        textScore = findViewById(R.id.text_score)
 
         buttonClick.setOnClickListener {
-            textScore.text = "Hello"
+            countClick()
         }
 
+    }
+
+    fun countClick() {
+        val countString = textScore.text.toString()
+        var count: Int = Integer.parseInt(countString)
+        count++
+
+        textScore.text = count.toString()
     }
 }
