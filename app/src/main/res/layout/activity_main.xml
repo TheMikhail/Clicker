@@ -8,7 +8,6 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <TextView
         android:id="@+id/text_score"
         android:layout_width="wrap_content"
@@ -16,7 +15,6 @@
         android:text= "0"
         android:textSize="60sp"
         android:padding="24dp"/>
-
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,6 +25,17 @@
         android:id="@+id/buttonScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+            <Button
+                android:text="Купить улучшение клика"
+                android:id="@+id/buttonMulti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
