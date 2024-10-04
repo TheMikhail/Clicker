@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         buttonClick.setOnClickListener {
            displayAndUpdateTheNumberOfPoints(countClickOnTap())
         }
-       buttonMulti.setOnClickListener{
-           multiClick()
-       }
+        buttonMulti.setOnClickListener{
+            multiClick()
+        }
 
     }
     fun countClickOnTap():Double{
