@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     fun enabledButton(){
         if (count >= UpdateCostImprovement().getUpdateCost())
         buttonMulti.isEnabled = true
+        else buttonMulti.isEnabled = false
     }
 
 }
