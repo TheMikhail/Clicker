@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.color.utilities.Score.score
 
 class MainActivity : AppCompatActivity() {
     private lateinit var buttonClick: Button
@@ -27,14 +26,13 @@ class MainActivity : AppCompatActivity() {
         buttonMulti.setOnClickListener{
             multiClick()
         }
-
     }
     fun countClickOnTap():Double{
         return sizeClick
     }
     fun multiClick(){
-        count -= UpdateCost().getUpdateCost()
-        UpdateCost().buyUpdateCount()
+        count -= UpdateCostImprovement().getUpdateCost()
+        UpdateCostImprovement().buyUpdateCount()
         updateView(count)
         sizeClick *= 2
     }
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         enabledButton()
     }
     fun enabledButton(){
-        if (count >= UpdateCost().getUpdateCost())
+        if (count >= UpdateCostImprovement().getUpdateCost())
         buttonMulti.isEnabled = true
     }
 

@@ -2,8 +2,8 @@ package com.example.clicker
 
 import kotlin.math.pow
 
-class UpdateCost {
-    private var baseCost = 10
+class UpdateCostImprovement {
+    private val baseCost = 10
     private var updateCount = 1
     private val costIncreaseFactor = 1.15
 
