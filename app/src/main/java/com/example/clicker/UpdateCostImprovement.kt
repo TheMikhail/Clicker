@@ -5,7 +5,7 @@ class UpdateCostImprovement {
     private var updateCount = 1
     private val costIncreaseFactor = 2
 
-    private val baseCostAuto = 1
+    private val baseCostAuto = 30
     private val costIncreaseFactorAuto = 3
     private var updateCountAuto = 1
     fun getUpdateCostMulti(): Int {

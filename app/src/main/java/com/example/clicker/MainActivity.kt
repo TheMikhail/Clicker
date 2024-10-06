@@ -2,6 +2,7 @@ package com.example.clicker
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Timer
@@ -29,13 +30,13 @@ class MainActivity : AppCompatActivity() {
         buttonAuto.isEnabled = false
         updateView(count)
         updateViewButtonAuto(updateCostImprovement.getUpdateCostAuto())
-        displayAndUpdateViewPriceOfUpgradeMulti(updateCostImprovement.getUpdateCostMulti())
+        updateViewButtonMulti(updateCostImprovement.getUpdateCostMulti())
 
         buttonClick.setOnClickListener {
            displayAndUpdateTheNumberOfPoints(countClickOnTap())
         }
         buttonMulti.setOnClickListener{
-            multiClick()
+            displayAndUpdateViewPriceOfUpgradeMulti(updateCostImprovement.getUpdateCostMulti())
         }
         buttonAuto.setOnClickListener {
             displayAndUpdateViewPriceOfUpgradeAuto(updateCostImprovement.getUpdateCostAuto())
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         count -= updateCostImprovement.getUpdateCostMulti()
         updateCostImprovement.buyUpdateCountMulti()
         updateView(count)
-        displayAndUpdateViewPriceOfUpgradeMulti(updateCostImprovement.getUpdateCostMulti())
+        updateViewButtonMulti(updateCostImprovement.getUpdateCostMulti())
         sizeClick *= 2
     }
 
@@ -83,10 +84,13 @@ class MainActivity : AppCompatActivity() {
         buttonMulti.isEnabled = true
         else buttonMulti.isEnabled = false
     }
-    fun displayAndUpdateViewPriceOfUpgradeMulti(count: Int){
+    fun displayAndUpdateViewPriceOfUpgradeMulti(increment: Int){
+        updateViewButtonMulti(increment)
+        multiClick()
+    }
+    fun updateViewButtonMulti(count: Int){
         buttonMulti.text = "Купить улучшение 'Кратность' за: $count монет"
     }
-
     fun updateViewButtonAuto(count: Int){
         buttonAuto.text = "Купить улучшение 'Авто клик' за $count монет"
     }
