@@ -117,7 +117,6 @@ class MainActivity : AppCompatActivity() {
        // multiClick()
     }
 
-
     fun displayAndUpdateViewPriceOfUpgradeAuto(increment: Int) {
 
     }
