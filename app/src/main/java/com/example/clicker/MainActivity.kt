@@ -6,21 +6,15 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.Timer
-import java.util.TimerTask
-import kotlin.concurrent.schedule
-import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity() {
     private lateinit var buttonClick: Button
     private lateinit var textScore: TextView
     private lateinit var buttonMulti: Button
     private lateinit var buttonAuto: Button
-    private var sizeClick = 1
 
     private val viewModel: MainActivityViewModel by viewModels()
     private val updateCostImprovement = UpdateCostImprovement()
@@ -46,16 +40,17 @@ class MainActivity : AppCompatActivity() {
         buttonAuto.isEnabled = false
 
         buttonClick.setOnClickListener {
-            displayAndUpdateTheNumberOfPoints()
+            displayAndUpdateTheNumberOfPoints(viewModel.clickOnTap())
         }
         buttonMulti.setOnClickListener {
+            Log.d("bMulti","Pushing")
             displayAndUpdateViewPriceOfUpgradeMulti(updateCostImprovement.getUpdateCostMulti())
         }
         buttonAuto.setOnClickListener {
             displayAndUpdateViewPriceOfUpgradeAuto(updateCostImprovement.getUpdateCostAuto())
         }
 
-        viewModel.count
+        viewModel.countMoney
             .onEach { updateView(it) }
             .launchIn(lifecycleScope)
     }
@@ -85,28 +80,28 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onDestroy called")
     }
 
-    fun countClickOnTap(): Int {
-        return sizeClick
-    }
-
     /*fun multiClick() {
         count -= updateCostImprovement.getUpdateCostMulti()
         updateCostImprovement.buyUpdateCountMulti()
         sizeClick *= 2
     }*/
 
-    fun displayAndUpdateTheNumberOfPoints() {
-        updateScore()
+    fun displayAndUpdateTheNumberOfPoints(increment: Int) {
+        updateScore(increment)
     }
 
-    fun updateScore() {
-        viewModel.handleClickAction()
+    fun updateScore(increment: Int) {
+        viewModel.handleClickAction(increment)
     }
 
     fun updateView(currentScore: Int) {
         textScore.text = "Текущий счет: $currentScore"
-        buttonMulti.isEnabled = currentScore >= updateCostImprovement.getUpdateCostMulti()
-        buttonAuto.isEnabled = currentScore >= updateCostImprovement.getUpdateCostAuto()
+        if (currentScore >= updateCostImprovement.getUpdateCostMulti()){
+            buttonMulti.isEnabled = true
+        }else buttonMulti.isEnabled = false
+        if (currentScore >= updateCostImprovement.getUpdateCostAuto()){
+                buttonAuto.isEnabled = true
+        }else buttonAuto.isEnabled = false
         buttonMulti.text = "Купить улучшение 'Кратность' за: " +
                 "${updateCostImprovement.getUpdateCostMulti()} монет"
         buttonAuto.text = "Купить улучшение 'Авто клик' за " +
@@ -115,8 +110,8 @@ class MainActivity : AppCompatActivity() {
 
     fun displayAndUpdateViewPriceOfUpgradeMulti(increment: Int) {
        // multiClick()
+        viewModel.handleButtonMulti()
     }
-
 
     fun displayAndUpdateViewPriceOfUpgradeAuto(increment: Int) {
 
