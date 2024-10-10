@@ -2,22 +2,24 @@ package com.example.clicker
 
 class UpdateCostImprovement {
     private val baseCost = 10
-    private var updateCount = 1
+    var upgradeCountMulti = 1
+
     private val costIncreaseFactor = 2
 
-    private val baseCostAuto = 30
+    private val baseCostAuto = 3
     private val costIncreaseFactorAuto = 3
-    private var updateCountAuto = 1
+    var upgradeCountAuto = 1
     fun getUpdateCostMulti(): Int {
-        return ((baseCost * Math.pow(costIncreaseFactor.toDouble(),updateCount.toDouble())).toInt())
+        return ((baseCost * Math.pow(costIncreaseFactor.toDouble(),upgradeCountMulti.toDouble())).toInt())
     }
     fun buyUpdateCountMulti(){
-        updateCount++
+        upgradeCountMulti++
     }
     fun getUpdateCostAuto():Int{
-        return ((baseCostAuto * Math.pow(costIncreaseFactorAuto.toDouble(),updateCountAuto.toDouble())).toInt())
+        return ((baseCostAuto * Math.pow(costIncreaseFactorAuto.toDouble(),upgradeCountAuto.toDouble())).toInt())
     }
     fun buyUpdateCountAuto(){
-        updateCountAuto++
+        upgradeCountAuto++
     }
+
 }
