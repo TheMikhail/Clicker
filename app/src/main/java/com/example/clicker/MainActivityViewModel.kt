@@ -10,11 +10,9 @@ class MainActivityViewModel : ViewModel() {
 
     private var sizeClick = 1
     private val updateCostImprovement = UpdateCostImprovement()
-
     fun handleClickAction(increment:Int){
         _countMoney.value += increment
     }
-
     fun clickOnTap():Int{
         return sizeClick
     }
